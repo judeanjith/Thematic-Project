@@ -1,0 +1,55 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Page title shown in browser tab -->
+    <title>Login</title>
+
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main container used to center the login box -->
+    <div class="auth-container">
+
+        <!-- Login form (will connect to backend later) -->
+        <form class="auth-box" action="/login" method="POST">
+
+            <!-- Page heading -->
+            <h2>Login</h2>
+
+            <!-- Username input -->
+            <label for="username">Username</label>
+            <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                required
+            >
+
+            <!-- Password input -->
+            <label for="password">Password</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                required
+            >
+
+            <!-- Submit button -->
+            <button type="submit">Login</button>
+
+            <!-- Link to registration page -->
+            <p class="switch">
+                Don't have an account?
+                <a href="register.html">Register</a>
+            </p>
+
+        </form>
+    </div>
+
+</body>
+</html>

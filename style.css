@@ -1,0 +1,84 @@
+/* style.css */
+
+/* Remove default browser spacing and set font */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9; /* Light grey background */
+}
+
+/* Container that centers the form vertically and horizontally */
+.auth-container {
+    height: 100vh; /* Full screen height */
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center;     /* Vertical center */
+}
+
+/* Main login/register box */
+.auth-box {
+    background: white;               /* White card background */
+    padding: 40px;                   /* Inner spacing */
+    width: 320px;                    /* Fixed width */
+    border-radius: 10px;             /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Soft shadow */
+}
+
+/* Form heading */
+.auth-box h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Labels for inputs */
+.auth-box label {
+    display: block;      /* Each label on its own line */
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Input fields and dropdown */
+.auth-box input,
+.auth-box select {
+    width: 100%;          /* Full width inside box */
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Prevents overflow */
+}
+
+/* Submit button styling */
+.auth-box button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff; /* Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+.auth-box button:hover {
+    background-color: #0056b3;
+}
+
+/* Text under the form (switch page link) */
+.switch {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Link styling */
+.switch a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Link hover effect */
+.switch a:hover {
+    text-decoration: underline;
+}
