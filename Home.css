@@ -1,0 +1,166 @@
+:root {
+    --teal-dark: #2e6b6b;
+    --teal-mid: #4a9b8e;
+    --teal-light: #c8e8e4;
+    --teal-pale: #eaf5f4;
+    --accent: #e05a2b;
+    --text: #1a2e2e;
+    --muted: #5a7a7a;
+    --border: #b0d0cc;
+    --white: #ffffff;
+    --shadow: 0 2px 12px rgba(46, 107, 107, 0.12);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--teal-pale);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.box1 {
+    background: linear-gradient(90deg, var(--teal-dark), var(--teal-mid));
+    color: var(--white);
+    padding: 22px 28px;
+    box-shadow: var(--shadow);
+}
+
+.header-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.title {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.title:hover {
+    text-decoration: underline;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: rgba(255, 255, 255, 0.24);
+    outline: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    min-width: 220px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(46, 107, 107, 0.16);
+    border: 1px solid var(--teal-light);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 1px solid var(--teal-light);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--teal-pale);
+    color: var(--teal-dark);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    display: block;
+}
+
+.container1 {
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--teal-light);
+    padding: 32px;
+}
+
+.card h2,
+.card h3,
+.card h4,
+.card h5 {
+    color: var(--teal-dark);
+    margin-top: 0;
+}
+
+.card h2 {
+    margin-bottom: 22px;
+    font-size: 2.1rem;
+}
+
+.card h3,
+.card h4,
+.card h5 {
+    margin-bottom: 10px;
+    font-size: 1.35rem;
+}
+
+.card p {
+    margin-bottom: 16px;
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.card ul,
+.card ol {
+    margin: 12px 0 20px 24px;
+    padding: 0;
+}
+
+.card li {
+    margin-bottom: 10px;
+}
+
+.card h3,
+.card h4,
+.card h5,
+.card li,
+.card p + p {
+    color: var(--text);
+}
+
