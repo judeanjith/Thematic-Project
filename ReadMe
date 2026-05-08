@@ -1,0 +1,128 @@
+ Risk Assessment Tool
+A browser-based, multi-step cybersecurity risk assessment tool that guides users through identifying threats, scoring inherent and residual risk, recording controls, and generating a printable report. No backend or database required — everything runs locally in the browser.
+
+
+
+
+Getting Started
+No build tools, npm, or server required.
+
+Download or clone all files into the same folder.
+Open Risktool.html in any modern browser (Chrome, Firefox, Edge, Safari).
+Fill in the assessment details and add threats.
+Click Save & Continue to generate the report in score.html.
+
+
+
+How It Works
+Step 1 — Risktool.html
+The form page where the assessor:
+
+Enters assessment metadata (title, company, assessor name, dates).
+Adds one or more threat cards, each of which walks through five steps:
+
+Identify the Threat — select from a categorised dropdown built from frameworks.js.
+Who & How — free-text "who is affected" and a dynamic "how" dropdown populated from the selected threat's howOptions.
+Inherent Risk Scoring — Likelihood (1–5) × Impact (1–5) before controls. Score is calculated automatically and rated Low / Medium / High / Critical.
+Existing Controls & Residual Risk Scoring — same 5×5 scoring matrix, applied after existing controls.
+Record Findings — action owner, due date, and optional completion date.
+
+
+Save stores a draft to localStorage (key: riskAssessmentDraft) so it can be restored on next visit.
+Save & Continue validates all fields, saves final data to localStorage (key: riskAssessmentData), and navigates to score.html.
+
+Step 2 — score.html
+The read-only report page that:
+
+Reads riskAssessmentData from localStorage.
+Renders assessment metadata, a residual risk summary (counts by severity), and a detailed card for each threat.
+Each threat card shows inherent vs residual scores side-by-side with a reduction indicator, all field values, and a list of recommended countermeasures drawn from frameworks.js.
+An Export as PDF button triggers the browser's native print dialog (optimised for print via @media print styles in score.css).
+
+
+Threat Framework Library — frameworks.js
+frameworks.js exports a single global object FRAMEWORKS, keyed by threat ID. It is loaded by both Risktool.html and score.html.
+Each entry contains:
+FieldDescriptionidUnique string key (e.g. "phishing")labelHuman-readable threat nameframeworkShort framework code: "CIS", "NIST", or "MITRE"frameworkFullFull framework name for displaycontrolSpecific control or technique referencedescriptionPlain-English explanation of the threathowOptionsArray of strings populating the "How?" dropdowncountermeasuresArray of recommended control measures shown in the report
+Included Threats
+CIS Critical Security Controls v8
+
+Phishing (Control 14)
+Malware (Control 10)
+Unauthorised Access (Control 6)
+Data Leakage (Control 3)
+Misconfiguration (Control 4)
+
+NIST SP 800-53 Rev. 5
+
+Ransomware (IR-4 / SI-3)
+Insider Threat (PS-7 / AC-2)
+Social Engineering (AT-2 / PL-4)
+Physical Security Breach (PE-3 / PE-6)
+
+MITRE ATT&CK
+
+Phishing (T1566)
+Brute Force Attack (T1110)
+Man-in-the-Middle Attack (T1557)
+Removable Media (T1091)
+Supply Chain Attack (T1195)
+
+Adding a New Threat
+Add a new entry to the FRAMEWORKS object in frameworks.js:
+js"my-new-threat": {
+  id: "my-new-threat",
+  label: "My New Threat",
+  framework: "CIS",               // "CIS", "NIST", or "MITRE"
+  frameworkFull: "CIS Critical Security Controls v8",
+  control: "Control X – Name",
+  description: "A short plain-English description.",
+  howOptions: [
+    "How this threat could occur — option 1",
+    "How this threat could occur — option 2"
+  ],
+  countermeasures: [
+    "Recommended control 1",
+    "Recommended control 2"
+  ]
+}
+The new threat will automatically appear in the dropdown under its framework group — no other changes needed.
+
+Styling
+All visual design is driven by CSS custom properties defined in :root inside Risktool.css:
+VariablePurpose--teal-darkPrimary brand colour (top bar, headings)--teal-midInteractive elements (buttons, focus rings)--teal-lightBorders and dividers--teal-palePage and card backgrounds--accentError states and required field indicators--warn-bg / --warn-borderWarning notice colours--text / --mutedBody and secondary text
+Risk severity colours follow a standard traffic-light convention: green for Low, amber for Medium, red for High, dark red for Critical.
+
+Risk Scoring
+Risk scores are calculated as:
+Score = Likelihood (1–5) × Impact (1–5)   →   range: 1–25
+ScoreLevel1–4Low5–9Medium10–14High15–25Critical
+This is computed in Risktool.js by the getRiskLevel() function and stored in hidden form fields. Both inherent (pre-controls) and residual (post-controls) scores are captured independently.
+
+Data Persistence
+All data is stored in the browser's localStorage — nothing is sent to any server.
+KeySet byUsed byContentsriskAssessmentDraft"Save" buttonForm on reloadPartial form stateriskAssessmentData"Save & Continue"score.jsComplete validated submission
+To clear saved data, open the browser's developer tools → Application → Local Storage and delete the relevant keys.
+
+ Validation
+Clicking Save & Continue triggers validateAll() in Risktool.js, which checks:
+
+All five assessment metadata fields are filled.
+For each threat card: threat type, who, how, existing controls, further actions, action owner, and action due date are all completed.
+All four scoring fields (inherent likelihood, inherent impact, residual likelihood, residual impact) have a value selected.
+
+Invalid fields are highlighted with a red border. The page scrolls to the first invalid field automatically.
+
+ Exporting as PDF
+On the report page, clicking Export as PDF opens the browser print dialog. For best results:
+
+Set paper size to A4.
+Enable "Background graphics" in print settings to preserve colour coding.
+Save as PDF from the print dialog.
+
+
+ Browser Compatibility
+Tested and supported in all modern evergreen browsers. Requires JavaScript enabled. Does not use any external JavaScript libraries — all dependencies are Google Fonts 
+
+Licence
+This project is intended for internal or educational use. Adapt freely for your own organisation's risk assessment workflows.
